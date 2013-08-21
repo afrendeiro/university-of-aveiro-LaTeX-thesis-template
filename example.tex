@@ -1,0 +1,686 @@
+%
+% uaThesis example (for a thesis written in Portuguese)
+%
+% the complete list of options and commands can be found in uaThesis.sty 
+%
+
+\documentclass[11pt,twoside,a4paper]{report}
+\usepackage[DETI,newLogo]{uaThesis}
+
+\def\ThesisYear{2012}
+
+% optional packages
+\usepackage[portuguese]{babel}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xspace}% used by \sigla
+
+% optional (comment to use default)s
+%   depth of the table of contents
+%     1 ... chapther and sections
+%     2 ... chapters, sections, and subsections
+%     3 ... chapters, sections, subsections, and subsubsections
+\setcounter{tocdepth}{3}
+
+% optional (comment to used default)
+%   horizontal line to separate floats (figures and tables) from text
+\def\topfigrule{\kern 7.8pt \hrule width\textwidth\kern -8.2pt\relax}
+\def\dblfigrule{\kern 7.8pt \hrule width\textwidth\kern -8.2pt\relax}
+\def\botfigrule{\kern -7.8pt \hrule width\textwidth\kern 8.2pt\relax}
+
+% custom macros (could also be defined using \newcommand)
+\def\I{\mathtt{i}}         % one possible way to represent $\sqrt{-1}$
+\def\Exp#1{e^{2\pi\I #1}}  % argument inside braces, i.e., "{}"
+\def\EXP#1.{e^{2\pi\I #1}} % argument finishes when a full stop is encountered, i.e., "."
+\def\sigla{\LaTeX\xspace}  % use as "blabla \sigla blabla (no need to do "blabla \sigla\ blabla"
+
+\def\AddVMargin#1{\setbox0=\hbox{#1}%
+                  \dimen0=\ht0\advance\dimen0 by 2pt\ht0=\dimen0%
+                  \dimen0=\dp0\advance\dimen0 by 2pt\dp0=\dimen0%
+                  \box0}   % add extra vertical space above and below the argument (#1)
+\def\Header#1#2{\setbox1=\hbox{#1}\setbox2=\hbox{#2}%
+           \ifdim\wd1>\wd2\dimen0=\wd1\else\dimen0=\wd2\fi%
+           \AddVMargin{\parbox{\dimen0}{\centering #1\\#2}}} % put #1 on top #2
+
+
+\begin{document}
+
+%
+% Cover page (use only one of the first two \TitlePage)
+%
+
+% First alternative, with a figure
+\TitlePage
+  %\GRID  % for debugging ONLY
+  \HEADER{\BAR\FIG{\includegraphics[height=60mm]{uaLogoOld}}} % the \FIG{} is optional
+         {\ThesisYear}
+  \TITLE{Z\'e \newline Manel}
+        {Como escrever uma tese bonita e cheia de resultados importantes}
+\EndTitlePage
+\titlepage\ \endtitlepage % empty page
+
+% Second alternative, with a citation
+\TitlePage
+  %\GRID  % for debugging ONLY
+  \HEADER{\BAR\FIG{\begin{minipage}{50mm} % no more than 120mm
+          ``I'm King of the world.''
+           \begin{flushright}
+            --- Jack Nicholson
+           \end{flushright}
+          \end{minipage}}}
+         {\ThesisYear}
+  \TITLE{Z\'e \newline Manel}
+        {Como escrever uma tese bonita e cheia de resultados importantes}
+\EndTitlePage
+\titlepage\ \endtitlepage % empty page
+
+
+%
+% Initial thesis pages
+%
+
+\TitlePage
+  \HEADER{}{\ThesisYear}
+  \TITLE{Z\'e \newline Manel}
+        {Como escrever uma tese bonita e cheia de resultados importantes}
+  \vspace*{15mm}
+  \TEXT{}
+       {Disserta\c c\~ao apresentada \`a Universidade de Aveiro para cumprimento dos requesitos
+        necess\'arios \`a obten\c c\~ao do grau de Doutor em X, realizada sob a orienta\c c\~ao
+        cient\'\i fica de Y, Professor do Departamento Z da Universidade de Aveiro}
+\EndTitlePage
+\titlepage\ \endtitlepage % empty page
+
+\TitlePage
+  \vspace*{55mm}
+  \TEXT{\textbf{o j\'uri~/~the jury\newline}}
+       {}
+  \TEXT{presidente~/~president}
+       {\textbf{ABC}\newline {\small
+        Professor Catedr\'atico da Universidade de Aveiro (por delega\c c\~ao da Reitora da
+        Universidade de Aveiro)}}
+  \vspace*{5mm}
+  \TEXT{vogais~/~examiners committee}
+       {\textbf{DEF}\newline {\small
+        Professor Catedr\'atico da Universidade de Aveiro (orientador)}}
+  \vspace*{5mm}
+  \TEXT{}
+       {\textbf{GHI}\newline {\small
+        Professor associado da Universidade J (co-orientador)}}
+  \vspace*{5mm}
+  \TEXT{}
+       {\textbf{KLM}\newline {\small
+        Professor Catedr\'atico da Universidade N}}
+\EndTitlePage
+\titlepage\ \endtitlepage % empty page
+
+\TitlePage
+  \vspace*{55mm}
+  \TEXT{\textbf{agradecimentos~/\newline acknowledgements}}
+       {\'E com muito gosto que aproveito esta oportunidade para agradecer a todos os que me
+        ajudaram durante este longos e penosos anos, cheios de altos e baixos (mais baixos que
+        altos)\ldots}
+  \TEXT{}
+       {Desejo tamb\'em pedir desculpa a todos que tiveram de suportar o meu desinteresse pelas
+        tarefas mundanas do dia-a-dia, \ldots}
+\EndTitlePage
+\titlepage\ \endtitlepage % empty page
+
+\TitlePage
+  \vspace*{55mm}
+  \TEXT{\textbf{Resumo}}
+       {Nos dias que correm, \'e frequente um trabalho ser avaliado pela sua apar\^encia em vez de
+        o ser pelo seu conte\'udo. Sendo assim, sem descurar este \'ultimo, nesta tese descrevemos
+        maneiras revolucion\'arias de transformar um documento s\'olido e austero num documento
+        s\'olido e belo, capaz de fazer chorar de alegria (ou de inveja) qualquer leitor, mesmo
+        quando este n\~ao percebe nada do que l\'a est\'a escrito.}
+  \TEXT{}
+       {A explora\c c\~ao de novas descobertas na \'area da percep\c c\~ao visual, nomeadamente
+        no que se refere \`a aprecia\c c\~ao de obras de arte geniais, \ldots}
+\EndTitlePage
+\titlepage\ \endtitlepage % empty page
+
+\TitlePage
+  \vspace*{55mm}
+  \TEXT{\textbf{Abstract}}
+       {Nowadays, it is usual to evaluate a work \ldots}
+\EndTitlePage
+\titlepage\ \endtitlepage % empty page
+
+
+%
+% Tables of contents, of figures, ...
+%
+
+\pagenumbering{roman}
+\tableofcontents
+
+\cleardoublepage
+\listoffigures
+
+\cleardoublepage
+\listoftables
+
+
+% The chapters (usually written using the isolatin font encoding ...)
+
+\cleardoublepage
+\pagenumbering{arabic}
+\chapter{Introdu\c c\~ao}
+
+Para este tipo de documentos, o autor prefere o estilo \verb+report+ ao estilo \verb-book-,
+pelo que somente o primeiro \'e suportado oficialmente pelo ficheiro \verb:uaThesis.sty:.
+\'E poss\'\i vel for\c car um novo cap\'\i tulo a come\c car numa p\'agina \'\i mpar atrav\'es
+do uso do comando \verb!\cleardoublepage!. Deve-se sempre incluir a op\c c\~ao \verb+a4paper+
+para especificar as dimensões das folhas de papel.
+
+Escusado ser\'a dizer (na realidade, escrever) que se a l\'\i ngua em que est\'a escrito o
+documento n\~ao for o Ingl\^es, ser\'a preciso utilizar o ``pacote'' \verb.babel..
+
+
+\section{Op\c c\~oes}
+
+Apresentamos de seguida, uma lista das op\c c\~oes suportadas.
+\begin{itemize}
+  \item \verb+oldLogo+: usa o ``antigo'' logotipo da Universidade de Aveiro.
+  \item \verb+newLogo+: usa o ``novo'' logotipo da Universidade de Aveiro.
+  \item \verb+final+: \textbf{n\~ao escreve} o texto ``documento provis\'orio'' na capa: al\'em
+        disso, todas as marcas que assinalam linhas demasiado compridas s\~ao eliminadas.
+  \item \verb+DETI+, \verb+DM+, \verb+DF+: para teses escritas por alunos dos departamentos de
+        electr\'onica, telecomunica\c c\~oes e inform\'atica, de matem\'atica, e de f\'\i sica.
+        \'E muito f\'acil incluir uma op\c c\~ao para um outro departamentos editando o
+        ficheiro \verb+uaThesis.sty+.
+\end{itemize}
+
+
+\section{Problemas conhecidos}
+
+N\~ao h\'a problemas conhecidos. Todas as coisas aparentemente erradas n\~ao s\~ao problemas
+(\textit{bugs}), s\~ao esquisitices (\textit{features}) do ficheiro de estilo \verb:uaThesis.sty:.
+
+
+\cleardoublepage
+\chapter{Alguns truques \'uteis}
+
+\'E poss\'\i vel desalinhar texto na vertical, para cima
+  \raise 2pt\hbox{(aqui est\'a ele para cima)}
+e para baixo
+  \lower 2pt\hbox{(aqui est\'a ele para baixo)}.
+Atendendo que o texto desalinhado est\'a dentro de uma caixa (\verb+\hbox+), este
+ficar\'a sempre na mesma linha, ou seja, uma linha s\'o poder\'a ser partida no
+in\'\i cio ou no fim desse texto. No entanto,
+\raise -2.25pt\hbox{isso}
+\raise -1.75pt\hbox{pode}
+\raise -1.25pt\hbox{ser}
+\raise -0.75pt\hbox{resolvido}
+\raise -0.25pt\hbox{colocando}
+\raise  0.25pt\hbox{o}
+\raise  0.75pt\hbox{texto}
+\raise  1.25pt\hbox{em}
+\raise  1.75pt\hbox{caixas}
+\raise  2.25pt\hbox{separadas}.
+Os mais malucos podem at\'e experimentar coisas do g\'enero
+\raise  0.000pt\hbox{$\cdot$}%
+\raise  1.236pt\hbox{$\cdot$}%
+\raise  2.351pt\hbox{$\cdot$}%
+\raise  3.236pt\hbox{$\cdot$}%
+\raise  3.804pt\hbox{$\cdot$}%
+\raise  4.000pt\hbox{$\cdot$}%
+\raise  3.804pt\hbox{$\cdot$}%
+\raise  3.236pt\hbox{$\cdot$}%
+\raise  2.351pt\hbox{$\cdot$}%
+\raise  1.236pt\hbox{$\cdot$}%
+\raise  0.000pt\hbox{$\cdot$}\-%
+\raise -1.236pt\hbox{$\cdot$}%
+\raise -2.351pt\hbox{$\cdot$}%
+\raise -3.236pt\hbox{$\cdot$}%
+\raise -3.804pt\hbox{$\cdot$}%
+\raise -4.000pt\hbox{$\cdot$}%
+\raise -3.804pt\hbox{$\cdot$}%
+\raise -3.236pt\hbox{$\cdot$}%
+\raise -2.351pt\hbox{$\cdot$}%
+\raise -1.236pt\hbox{$\cdot$}%
+\raise  0.000pt\hbox{$\cdot$}\-%
+\raise  1.236pt\hbox{$\cdot$}%
+\raise  2.351pt\hbox{$\cdot$}%
+\raise  3.236pt\hbox{$\cdot$}%
+\raise  3.804pt\hbox{$\cdot$}%
+\raise  4.000pt\hbox{$\cdot$}%
+\raise  3.804pt\hbox{$\cdot$}%
+\raise  3.236pt\hbox{$\cdot$}%
+\raise  2.351pt\hbox{$\cdot$}%
+\raise  1.236pt\hbox{$\cdot$}%
+\raise  0.000pt\hbox{$\cdot$}\-%
+\raise -1.236pt\hbox{$\cdot$}%
+\raise -2.351pt\hbox{$\cdot$}%
+\raise -3.236pt\hbox{$\cdot$}%
+\raise -3.804pt\hbox{$\cdot$}%
+\raise -4.000pt\hbox{$\cdot$}%
+\raise -3.804pt\hbox{$\cdot$}%
+\raise -3.236pt\hbox{$\cdot$}%
+\raise -2.351pt\hbox{$\cdot$}%
+\raise -1.236pt\hbox{$\cdot$}%
+\raise  0.000pt\hbox{$\cdot$}\-%
+\raise  1.236pt\hbox{$\cdot$}%
+\raise  2.351pt\hbox{$\cdot$}%
+\raise  3.236pt\hbox{$\cdot$}%
+\raise  3.804pt\hbox{$\cdot$}%
+\raise  4.000pt\hbox{$\cdot$}%
+\raise  3.804pt\hbox{$\cdot$}%
+\raise  3.236pt\hbox{$\cdot$}%
+\raise  2.351pt\hbox{$\cdot$}%
+\raise  1.236pt\hbox{$\cdot$}%
+\raise  0.000pt\hbox{$\cdot$}\-%
+\raise -1.236pt\hbox{$\cdot$}%
+\raise -2.351pt\hbox{$\cdot$}%
+\raise -3.236pt\hbox{$\cdot$}%
+\raise -3.804pt\hbox{$\cdot$}%
+\raise -4.000pt\hbox{$\cdot$}%
+\raise -3.804pt\hbox{$\cdot$}%
+\raise -3.236pt\hbox{$\cdot$}%
+\raise -2.351pt\hbox{$\cdot$}%
+\raise -1.236pt\hbox{$\cdot$}!
+
+Os argumentos de macros definidas pelo utilizador podem ser delimitados por chavetas, como
+em \verb+\I\Exp{\frac{mn}{N}}+ ($\I\Exp{\frac{mn}{N}}$), ou podem terminar numa sequ\^encia
+de caract\'eres definida pelo utilizador, como em \verb+\I\EXP\frac{mn}N.+
+($\I\EXP\frac{mn}N.$). Ver defini\c c\~oes de \verb+\Exp+ e de \verb+\EXP+ no pre\^ambulo
+desde documento; ambas t\^em um argumento, no primeiro caso delimitado por chavetas, e no
+segundo \textbf{terminado} por um ponto.
+
+Em par\'agrafos muito longos, \'e em certos casos poss\'ivel alterar o n\'umero de linhas que
+eles ocupam, colocando \verb+\looseness=N+ mesmo no fim do par\'agrafo, sendo \verb.N. o
+n\'umero de linhas extras que se pretendem. Por exemplo, \verb+\looseness=-1+ indica a nossa
+prefer\^encia por um par\'agrafo com \textit{menos} uma linha do que o que seria normal; caso
+seja poss\'\i vel, o \sigla ir\'a honrar esse nosso pedido, reduzindo a dist\^ancia entre
+palavras. Tamb\'em podemos tentar aumentar o n\'umero de linhas, usando um \verb0N0 positivo.
+\looseness=-1
+
+\'E poss\'\i vel partir f\'ormulas muito grandes usando alguns pacotes da \textit{Americal
+Mathematical Society} (\verb+\usepackage{amsmath}+ e \verb+\usepackage{amssymb}+, por
+exemplo). Aqui vai um exemplo:
+\begin{equation}
+  \begin{split}
+    F(z) & = \sum_{k=-\infty}^{+\infty} f(n)\,z^{-n}
+             \qquad\mbox{isto~\ldots}\qquad
+             \sum_{i=-\infty}^{+\infty}\sum_{j=-\infty}^{+\infty} F_{ij}
+             \\
+         & = \sum_{k=-\infty}^{+\infty} n^3\,z^{-n}.
+  \end{split}
+  \label{e:tf}
+\end{equation}
+Esta equa\c c\~ao tem o n\'umero~\ref{e:tf}. Note que a parte final da frase anterior foi
+escrita da seguinte maneira: \verb+n\'umero~\ref{e:tf}+. O caract\'er \verb+~+ \'e
+substitu\'\i do por um espa\c co e o \sigla \textbf{n\~ao pode} partir a linha nesse
+s\'\i tio. Neste caso, nunca ser\'a poss\'\i vel ficar o texto ``n\'umero'' no fim de uma
+linha e o texto ''\ref{e:tf}'' no in\'\i cio da linha seguinte (o que seria \textbf{muito}
+deselegante). Em geral, quando uma frase termina com uma palavra (ou fórmula matem\'atica)
+pequena, \'e deselegante que essa palavra fique numa nova linha (use \verb+~+ nesses casos para
+que isso n\~ao aconte\c ca).
+
+\medskip
+\'E poss\'\i vel introduzir um espa\c co vertical extra entre par\'agrafos usando as macros
+\verb+\smallskip+, \verb+\medskip+ e \verb+\bigskip+. Na op\c c\~ao \texttt{final} n\~ao aparece
+uma caixa preta (ver linha anterior), sempre que uma linha \'e grande de mais (sempre que isto
+acontece, deve-se inserir ou eliminar texto para que deixe de acontecer).
+
+
+\section{Mais alguns exemplos, agora sem qualquer explica\c c\~ao}
+
+\begin{table}[htbp]
+  \begin{center}%
+    \begin{tabular}{c|c}\hline
+      $n$ & $f(n)$ \\ \hline\hline
+      $1$ & $1$ \\[3mm]
+      $2$ & $4$ \\ \hline
+    \end{tabular}$\qquad$%
+    \begin{tabular}{|c|c|}\hline
+      $n$ & $f(n)$ \\ \hline\hline
+      $1$ & $1$ \\ \hline
+      $2$ & $4$ \\ \hline
+    \end{tabular}%
+    \caption{Isto \'e a tabela~\ref{t:tab1}.}%
+    \label{t:tab1}%
+  \end{center}%
+  \vspace*{5mm}%
+  \tabcolsep=20mm%
+  \begin{center}%
+    \hspace*{-18pt}\begin{tabular}{|c|c|c|c|c|}\hline
+      1 & 2 & 3 & 4 \\ \hline
+    \end{tabular}\hspace*{-18pt}%
+    \caption{Isto \'e a tabela~\ref{t:tab2}.}%
+    \label{t:tab2}%
+  \end{center}%
+\end{table}
+
+\def\LINHA#1#2{\def\ABC{#1}\def\DEF{}%
+  \hbox{\strut
+    \hbox to 40mm{\ifx\ABC\DEF\hss\else$\bullet$ \textbf{#1} \leaders\hbox{\,.\,}\hss\space\fi}%
+    #2\relax\strut}}
+\noindent\indent
+\vbox{%
+  \hrule height 2pt depth 0pt%
+  \hbox{%
+    \vrule width 2pt\kern 2mm%
+    \vbox{%
+      \kern 2mm%
+      \LINHA{Nome:}{Z\'e Manel}%
+      \LINHA{Idade:}{2}%
+      \LINHA{Morada:}{Sajhd sakjhd sakdhsa kdhsa hsa sakjhd}%
+      \LINHA{}{kdjsadsa kdjsakdjsa d}%
+      \kern 2mm%
+    }%
+    \kern 2mm\vrule width 2pt%
+  }%
+  \hrule height 2pt depth 0pt%
+}
+
+\def\ColA{57mm}
+\def\ColB{57mm}
+\def\Box#1#2{\setbox0=\hbox to \ifcase#1 \ColA\else\ColB\fi{\hss #2\hss}%
+  \dimen0=\ht0\advance\dimen0 by 1mm\ht0=\dimen0
+  \dimen0=\dp0\advance\dimen0 by 1mm\dp0=\dimen0\box0}
+\def\RBox#1#2#3{\setbox0=\hbox to \ifcase#1 \ColA\else\ColB\fi{\hss #2\hss\rlap{#3}}%
+  \dimen0=\ht0\advance\dimen0 by 1mm\ht0=\dimen0
+  \dimen0=\dp0\advance\dimen0 by 1mm\dp0=\dimen0\box0}
+\def\XBox#1#2#3{\setbox0=\hbox to \ifcase#1 \ColA\else\ColB\fi{\hss #2\hss}%
+  \dimen0=\ht0\advance\dimen0 by 1mm\ht0=\dimen0
+  \dimen0=\dp0\advance\dimen0 by 1mm\dp0=\dimen0\raise#3mm\box0}
+\def\SBox#1#2#3{\vbox{\Box{#1}{#2}\Box{#1}{#3}}}
+
+\begin{table}[htb]\centering\small
+  \caption{F\'ormulas relacionadas com a s\'erie cl\'assica de Fourier ($\Omega_T=\frac{2\pi}{T}$)}%
+  \vspace*{2mm}
+  \def\ColA{59mm}
+  \def\ColB{59mm}
+  \begin{tabular}{|c|c|}\hline
+      \Box{0}{Dom\'\i nio dos tempos} &
+      \Box{1}{Dom\'\i nio das frequ\^encias}
+    \\\hline\hline
+      \Box{0}{$\displaystyle f(t)=\sum_{n=-\infty}^{+\infty} f_n\,e^{i n\Omega_Tt}$} &
+      \Box{1}{$\displaystyle f_n = \frac1T\int_0^T f(t)\,e^{-i n\Omega_Tt}\,dt$}
+    \\\hline
+      \XBox{0}{$h(t)=f(t)g(t)$}{2.5} & \SBox{1}{$h_n=f_n \ast g_n$}{$\displaystyle
+        h_n=\sum_{m=-\infty}^{+\infty} f_{n-m}g_m$}
+    \\\hline
+      \SBox{0}{$h(t)=f(t)\ast g(t)$}{$\displaystyle h(t)=\frac1T\int_0^T
+        f(\tau)g(t-\tau)\,d\tau$} &
+      \XBox{1}{$h_n=f_ng_n$}{3}
+    \\\hline
+      \multicolumn{1}{|c}{\RBox{0}{$\displaystyle \bigl\langle f(t),g(t)\bigr\rangle =
+        \frac1T\int_0^T f(t)\overline{g(t)}\,dt$}{$\mkern 2mu=$}} &
+      \Box{1}{$\displaystyle \langle f_n,g_n\rangle=\sum_{n=-\infty}^{+\infty} f_n\overline{g_n}$}
+    \\\hline
+  \end{tabular}
+\end{table}
+
+
+\cleardoublepage
+\chapter{``\textit{Fun}''}
+
+Neste cap\'\i tulo limitamo-nos a apresentar uma lista dos primeiros cem
+n\'u\-me\-ros primos, gerados automaticamente pelo pr\'oprio \TeX\ (exemplo, ligeiramente
+modificado, extra\'\i do do livro ``The \TeX book'', escrito pelo Prof.\ Donald E. Knuth).
+O c\'odigo utilizado para gerar esta lista \'e o seguinte:
+\begin{verbatim}
+\newif\ifprime\newif\ifunknown\newcount\n\newcount\p\newcount\d\newcount\a
+\def\primes#1{2,~3\n=#1\advance\n by-2\p=5\loop\ifnum\n>0\printifprime
+  \advance\p by2\repeat}
+\def\printp{\ifnum\n=1\ e~\else, \fi\number\p\advance\n by-1}
+\def\printifprime{\testprimality\ifprime\printp\fi}
+\def\testprimality{{\d=3\global\primetrue\loop\trialdivision
+  \ifunknown\advance\d by2\repeat}}
+\def\trialdivision{\a=\p\divide\a by\d\ifnum\a>\d\unknowntrue\else
+  \unknownfalse\fi\multiply\a by \d\ifnum\a=\p\global\primefalse
+  \unknownfalse\fi}
+\primes{100}.
+\end{verbatim}
+
+
+\section{Os primeiros cem n\'umeros primos}
+
+\newif\ifprime\newif\ifunknown\newcount\n\newcount\p\newcount\d\newcount\a
+\def\primes#1{2,~3\n=#1\advance\n by-2\p=5\loop\ifnum\n>0\printifprime\advance\p by2\repeat}%
+\def\printp{\ifnum\n=1\ e~\else, \fi\number\p\advance\n by-1}%
+\def\printifprime{\testprimality\ifprime\printp\fi}%
+\def\testprimality{{\d=3\global\primetrue\loop\trialdivision\ifunknown\advance\d by2\repeat}}%
+\def\trialdivision{\a=\p\divide\a by\d\ifnum\a>\d\unknowntrue\else\unknownfalse\fi
+ \multiply\a by \d\ifnum\a=\p\global\primefalse\unknownfalse\fi}%
+\primes{100}.
+
+
+\cleardoublepage
+\chapter{Lixo 2}
+
+\section{Lixo 2.1}
+
+Mais uma brincadeira com uma tabela (tabela~\ref{t:align}).
+
+\begin{table}
+  \centering
+  \begin{tabular}{|c|r@{$.$}l|}
+    \hline
+    \Header{\textbf{ Nome do }}{\textbf{ programa }} &
+    \multicolumn{2}{c|}{ \bf tempo } \\
+    \hline
+    abc & $10$ & $000$  \\
+    def & $12$ & $0$    \\
+    ghi &  $9$ & $0928$ \\
+    jkl & $20$ & $0293$ \\
+    \hline
+  \end{tabular}
+  \caption{Uma maneira poss\'\i vel de alinhar n\'umeros pela v\'\i rgula (na realidade, ponto)}
+  \label{t:align}
+\end{table}
+
+\subsection{Lixo 2.1.1}
+
+Inclus\~ao de uma figura (figura~\ref{f:seno}) gerada seguinte c\'odigo \texttt{MATLAB}:
+\begin{verbatim}
+  >> t=0:0.01:1;
+  >> plot(t,sin(2*pi*t));
+  >> title('seno');
+  >> grid on
+  >> print -depsc2 'example_fig.eps'
+\end{verbatim}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.9\textwidth]{example_fig.eps}
+  \caption{Gr\'afico de $\sin(2\pi t)$ para $0\leq t\leq 1$.}
+  \label{f:seno}
+\end{figure}
+
+Idem, mas mostrando agora quadro figuras no mesmo gr\'afico. Devido ao encolhimento dos
+gr\'aficos, ser\'a preciso aumentar a expessura das linhas e o tamanho da \textit{font} no
+\texttt{MATLAB} (usando os comandos \verb+get+ e \verb+set+), o que n\~ao foi feito aqui para se
+ver como as letras e n\'umeros ficam pequenos.
+\begin{figure}
+  \centering
+  \begin{tabular}{|c|c|}
+    \hline
+      \includegraphics[width=0.4\textwidth]{example_fig.eps} a) &
+      \includegraphics[width=0.4\textwidth]{example_fig.eps} b) \\
+    \hline
+      \includegraphics[width=0.4\textwidth]{example_fig.eps} c) &
+      \includegraphics[width=0.4\textwidth]{example_fig.eps} d) \\
+    \hline
+  \end{tabular}
+  \caption{a) descri\c c\~ao do painel do canto superior, $\ldots$}
+  \label{f:seno2}
+\end{figure}
+
+
+\subsection{Lixo 2.1.2}
+
+\subsubsection{Lixo 2.1.2.1}
+
+Uma sub-sub-sec\c c\~ao!
+
+
+\subsubsection{Lixo 2.1.2.2}
+
+
+\section{Lixo 2.2}
+
+Veja a tabela~\ref{t:tabela1}.
+
+\begin{table}[hbt]
+  \centering
+  \begin{tabular}{c|c|c}
+    $x$ & $x^2$ & $x^3$ \\\hline
+    $1$ &   $1$ &   $1$ \\
+    $2$ &   $4$ &   $8$ \\
+    $3$ &   $9$ &  $27$ \\
+    $4$ &  $16$ &  $64$ \\
+    $5$ &  $25$ & $125$
+  \end{tabular}
+  \caption[Uma tabela!]{Uma tabela! Lixo, lixo, lixo, lixo, lixo, lixo, lixo, lixo, lixo, lixo,
+    lixo, lixo, lixo, lixo, lixo, lixo, lixo, lixo, lixo, lixo, lixo, lixo, lixo, lixo, ldots}
+  \label{t:tabela1}%
+\end{table}
+
+\section{Lixo 2.3}
+
+\subsection{Lixo 2.3.1}
+
+\subsection{Lixo 2.3.2}
+
+\subsection{Lixo 2.3.3}
+
+\subsection{Lixo 2.3.4}
+
+\subsection{Lixo 2.3.5}
+
+Veja a figura~\ref{f:figura1}.
+
+\begin{figure}[tb]
+  \centering
+  \setlength{\unitlength}{1pt}
+  \begin{picture}(100,100)(0,0)
+    \put(-0.20,-0.20){\rule{100.40pt}{0.40pt}}
+    \put(-0.20,99.80){\rule{100.40pt}{0.40pt}}
+    \put(-0.20,-0.20){\rule{0.40pt}{100.40pt}}
+    \put(99.80,-0.20){\rule{0.40pt}{100.40pt}}
+    \put(50,50){\makebox(0,0){UMA FIGURA!}}
+  \end{picture}
+  \caption[Texto explicativo mais pequeno!]{Uma figura! Lixo, lixo, lixo, lixo, lixo, lixo, lixo,
+    lixo, lixo, lixo, lixo, lixo, lixo, lixo, lixo, lixo, lixo, lixo, lixo, lixo, lixo, lixo,
+    lixo, lixo, lixo, lixo, ldots}
+  \label{f:figura1}%
+\end{figure}
+
+\subsection{Lixo 2.3.6}
+
+\section{Lixo 2.4}
+
+\section{Lixo 2.5}
+
+\section{Lixo 2.6}
+
+
+\cleardoublepage
+\chapter{Lixo 3}
+
+\section{Lixo 3.1}
+
+\subsection{Lixo 3.1.1}
+
+\subsection{Lixo 3.1.2}
+
+\section{Lixo 3.2}
+
+\section{Lixo 3.3}
+
+\subsection{Lixo 3.3.1}
+
+\subsection{Lixo 3.3.2}
+
+\subsection{Lixo 3.3.3}
+
+\subsection{Lixo 3.3.4}
+
+\subsection{Lixo 3.3.5}
+
+\section{Lixo 3.4}
+
+\section{Lixo 3.5}
+
+\section{Lixo 3.6}
+
+\section{Lixo 3.7}
+
+\section{Lixo 3.8}
+
+\section{Lixo 3.9}
+
+
+\cleardoublepage
+\chapter{Conclus\~ oes}
+
+Que conclus\~oes?
+
+Exemplo de duas entradas da ``\textit{bib file}'':
+
+{\footnotesize
+\begin{verbatim}
+@Article
+{
+  Eliahou-1-1993-CLBNCL,
+  author = {Eliahou, Shalom},
+  title = {The $3x+1$ Problem: New Lower Bounds on Nontrivial Cycle Lengths},
+  journal = {Discrete Mathematics},
+  year = {1993},
+  volume = {118},
+  number = {1--3},
+  pages = {45--56}
+}
+
+@Article
+{
+  Garner-1981-1-OCA,
+  author = {Garner, Lynn E.},
+  title = {On the Collatz $3n+1$ Algorithm},
+  journal = {Proceedings of the American Mathematical Society},
+  year = {1981},
+  volume = {82},
+  number = {1},
+  pages = {19--22},
+  month = May
+}
+\end{verbatim}
+}
+
+
+%
+% The bibliography
+%
+\cleardoublepage
+\iffalse
+  % Use this is the final version
+  %  unsrt produces numbered entries, sorted by order of citation
+  %  plain produces numbered entries, sorted alphabetically
+  %  other styles are possible (I recommend the harvard package)
+  \bibliographystyle{unsrt}
+  %\bibliographystyle{plain}
+  \bibliography{my-bib-file}% replace by the name of name of your .bib file
+\else
+  % An example (the contents of the .bbl file)
+  \begin{thebibliography}{10}
+
+  \bibitem{Eliahou-1-1993-CLBNCL}
+  Shalom Eliahou.
+  \newblock The $3x+1$ problem: New lower bounds on nontrivial cycle lengths.
+  \newblock {\em Discrete Mathematics}, 118(1--3):45--56, 1993.
+
+  \bibitem{Garner-1981-1-OCA}
+  Lynn~E. Garner.
+  \newblock On the collatz $3n+1$ algorithm.
+  \newblock {\em Proceedings of the American Mathematical Society}, 82(1):19--22,
+    May 1981.
+  \end{thebibliography}
+\fi
+\cleardoublepage
+
+\end{document}
