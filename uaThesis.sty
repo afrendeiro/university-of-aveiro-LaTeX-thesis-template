@@ -1,7 +1,7 @@
 %
 % LaTeX style file for thesis made at the University of Aveiro
 %
-% (c) 1999, 2007, 2009 Tomás Oliveira e Silva
+% (c) 1999, 2007, 2009 Tomï¿½s Oliveira e Silva
 %
 \ProvidesPackage{uaThesis}[2012/05/20 v0.7 UA thesis]
 \usepackage{graphicx}
@@ -15,7 +15,7 @@
 \DeclareOption{newLogo}{\def\ua@logo{uaLogoNew}}
 
 %
-% Remove "Documento provisório" from the cover page
+% Remove "Documento provisï¿½rio" from the cover page
 %
 \newif\ifua@final@\ua@final@false
 \DeclareOption{final}{\ua@final@true}
@@ -85,7 +85,16 @@
   \def\ua@textB{Departamento de F\'\i sica,}%
   \def\ua@textC{}%
   \def\ua@textD{}}
-
+% Biology
+\DeclareOption{DBIO}{\ua@sciences
+  \let\ua@redT=\ua@red\let\ua@greenT=\ua@green\let\ua@blueT=\ua@blue
+  \let\ua@redM=\ua@red\let\ua@greenM=\ua@green\let\ua@blueM=\ua@blue
+  \let\ua@redB=\ua@red\let\ua@greenB=\ua@green\let\ua@blueB=\ua@blue
+  \def\ua@textA{}%
+  \def\ua@textB{Departamento de Biologia}%
+  \def\ua@textC{}%
+  \def\ua@textD{}}
+  
 \ExecuteOptions{DETI}    % default!
 \ExecuteOptions{oldLogo} % default!
 \ProcessOptions
